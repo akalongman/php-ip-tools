@@ -1,5 +1,3 @@
-# php-ip-tools
-Useful tools for IP manipulations
 # PHP IP Tools
 
 [![Join the chat at
