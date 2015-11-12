@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b289dc9db788a098494a5d8563f0066a",
-    "content-hash": "4a57075017897136f65583025cb28131",
+    "hash": "9a3d8f5f77e70029945692a343851cff",
+    "content-hash": "01cab0bf1a878220594b370c37dcbe33",
     "packages": [],
     "packages-dev": [
         {
@@ -147,16 +147,16 @@
         },
         {
             "name": "phpspec/phpspec",
-            "version": "2.4.0-alpha2",
+            "version": "2.4.0-beta",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/phpspec.git",
-                "reference": "febe6074a6e6d3dc25930926a027da6cfe994724"
+                "reference": "e82d151ae84b014cedb62cbf37ba3e7599ef21c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/phpspec/zipball/febe6074a6e6d3dc25930926a027da6cfe994724",
-                "reference": "febe6074a6e6d3dc25930926a027da6cfe994724",
+                "url": "https://api.github.com/repos/phpspec/phpspec/zipball/e82d151ae84b014cedb62cbf37ba3e7599ef21c7",
+                "reference": "e82d151ae84b014cedb62cbf37ba3e7599ef21c7",
                 "shasum": ""
             },
             "require": {
@@ -221,7 +221,7 @@
                 "testing",
                 "tests"
             ],
-            "time": "2015-11-03 06:54:42"
+            "time": "2015-11-13 20:41:42"
         },
         {
             "name": "phpspec/prophecy",
@@ -1427,7 +1427,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.3.0"
+        "php": ">=5.5"
     },
     "platform-dev": []
 }
