@@ -27,7 +27,7 @@ Create *composer.json* file:
     "type": "project",
     "require": {
         "php": ">=5.3.0",
-        "longman/ip-tools": "*"
+        "longman/ip-tools": "~1.0.1"
     }
 }
 ```
@@ -76,3 +76,19 @@ $status = Ip::match('192.168.1.1', '192.168.0.0/255.255.255.0'); // false
 $status = Ip::match('192.168.1.1', array('192.168.123.*', '192.168.123.124'));
 
 ```
+
+
+
+
+-----
+This code is available on
+[Github](https://github.com/akalongman/php-ip-tools). Pull requests are welcome.
+
+## Troubleshooting
+If you like living on the edge, please report any bugs you find on the
+[PHP IP Tools issues](https://github.com/akalongman/php-ip-tools/issues) page.
+## Contributing
+See [CONTRIBUTING.md](CONTRIBUTING.md) for information.
+## Credits
+
+Credit list in [CREDITS](CREDITS)
