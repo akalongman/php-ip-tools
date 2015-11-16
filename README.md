@@ -1,8 +1,5 @@
 # PHP IP Tools
 
-[![Join the chat at
-https://gitter.im/akalongman/php-ip-tools](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/akalongman/php-ip-tools?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 [![Build Status](https://travis-ci.org/akalongman/php-ip-tools.svg?branch=master)](https://travis-ci.org/akalongman/php-ip-tools)
 [![Latest Stable
 Version](https://img.shields.io/packagist/v/Longman/ip-tools.svg)](https://packagist.org/packages/longman/ip-tools)
@@ -11,7 +8,7 @@ Version](https://img.shields.io/packagist/v/Longman/ip-tools.svg)](https://packa
 [![License](https://img.shields.io/packagist/l/Longman/ip-tools.svg)](https://packagist.org/packages/longman/ip-tools)
 
 
-IP Tools for manipulation on IP's.
+Universal IP Tools for manipulation on IPv4 and IPv6.
 
 ### Require this package with Composer
 Install this package through [Composer](https://getcomposer.org/).
@@ -24,7 +21,6 @@ Create *composer.json* file:
     "name": "yourproject/yourproject",
     "type": "project",
     "require": {
-        "php": ">=5.3.0",
         "longman/ip-tools": "~1.0.1"
     }
 }
@@ -50,28 +46,67 @@ $status = Ip::isValid('192.168.1.1'); // true
 $status = Ip::isValid('192.168.1.256'); // false
 
 
+// ip2long, long2ip
+
+/// IPv4
+$long = Ip::ip2long('192.168.1.1'); // 3232235777
+
+$dec = Ip::long2ip('3232235777'); // 192.168.1.1
+
+/// IPv6
+$long = Ip::ip2long('fe80:0:0:0:202:b3ff:fe1e:8329'); // 338288524927261089654163772891438416681
+
+$dec = Ip::long2ip('338288524927261089654163772891438416681', true); // fe80::202:b3ff:fe1e:8329
+
+
 // Matching
 
+/// IPv4
 $status = Ip::match('192.168.1.1', '192.168.1.*'); // true
 
 $status = Ip::match('192.168.1.1', '192.168.*.*'); // true
 
 $status = Ip::match('192.168.1.1', '192.168.*.*'); // true
 
+$status = Ip::match('192.168.1.1', '192.168.0.*'); // false
+
+
 $status = Ip::match('192.168.1.1', '192.168.1/24'); // true
 
 $status = Ip::match('192.168.1.1', '192.168.1.1/255.255.255.0'); // true
-
-$status = Ip::match('192.168.1.1', array('122.128.123.123', '192.168.1.*', '192.168.123.124')); // true
-
-
-$status = Ip::match('192.168.1.1', '192.168.0.*'); // false
 
 $status = Ip::match('192.168.1.1', '192.168.0/24'); // false
 
 $status = Ip::match('192.168.1.1', '192.168.0.0/255.255.255.0'); // false
 
+
+$status = Ip::match('192.168.1.5', '192.168.1.1-192.168.1.10'); // true
+
+$status = Ip::match('192.168.5.5', '192.168.1.1-192.168.10.10'); // true
+
+$status = Ip::match('192.168.5.5', '192.168.6.1-192.168.6.10');
+
+
+$status = Ip::match('192.168.1.1', array('122.128.123.123', '192.168.1.*', '192.168.123.124')); // true
+
 $status = Ip::match('192.168.1.1', array('192.168.123.*', '192.168.123.124'));
+
+/// IPv6
+
+$status = Ip::match('2001:cdba:0000:0000:0000:0000:3257:9652', '2001:cdba:0000:0000:0000:0000:3257:*'); // true
+
+$status = Ip::match('2001:cdba:0000:0000:0000:0000:3257:9652', '2001:cdba:0000:0000:0000:0000:*:*'); // true
+
+$status = Ip::match('2001:cdba:0000:0000:0000:0000:3257:9652',
+                    '2001:cdba:0000:0000:0000:0000:3257:1234-2001:cdba:0000:0000:0000:0000:3257:9999'); // true
+
+
+$status = Ip::match('2001:cdba:0000:0000:0000:0000:3258:9652', '2001:cdba:0000:0000:0000:0000:3257:*'); // false
+
+$status = Ip::match('2001:cdba:0000:0000:0000:1234:3258:9652', '2001:cdba:0000:0000:0000:0000:*:*'); // false
+
+$status = Ip::match('2001:cdba:0000:0000:0000:0000:3257:7778',
+                    '2001:cdba:0000:0000:0000:0000:3257:1234-2001:cdba:0000:0000:0000:0000:3257:7777'); // false
 
 ```
 

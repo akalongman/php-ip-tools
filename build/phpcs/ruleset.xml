@@ -13,6 +13,8 @@
 	<exclude-pattern type="relative">vendor/*</exclude-pattern>
     <exclude-pattern type="relative">.git/*</exclude-pattern>
 
+
+    <arg name="colors"/>
     <!-- <arg name="report" value="summary"/>
     <arg value="sp"/> -->
 

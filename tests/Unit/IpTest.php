@@ -26,14 +26,31 @@ class IpTest extends TestCase
      */
     public function test0()
     {
-        $status = (bool)Ip::isValid('192.168.1.1');
+        $status = Ip::isValid('192.168.1.1');
         $this->assertTrue($status);
 
-        $status = (bool)Ip::isValid('192.168.1.255');
+        $status = Ip::isValid('192.168.1.255');
         $this->assertTrue($status);
 
-        $status = (bool)Ip::isValid('192.168.1.256');
+        $status = Ip::isValidv4('192.168.1.1');
+        $this->assertTrue($status);
+
+        $status = Ip::isValid('2001:0db8:85a3:08d3:1319:8a2e:0370:7334');
+        $this->assertTrue($status);
+
+        $status = Ip::isValidv4('2001:0db8:85a3:08d3:1319:8a2e:0370:7334');
         $this->assertFalse($status);
+
+        $status = Ip::isValidv6('2001:0db8:85a3:08d3:1319:8a2e:0370:7334');
+        $this->assertTrue($status);
+
+        $status = Ip::isValid('192.168.1.256');
+        $this->assertFalse($status);
+
+        $status = Ip::isValid('2001:0db8:85a3:08d3:1319:8a2e:0370:733432');
+        $this->assertFalse($status);
+
+
     }
 
 
@@ -104,8 +121,73 @@ class IpTest extends TestCase
      */
     public function test6()
     {
-        $status = Ip::match('192.168.1.1', '192.168.1.2');
-
         $status = Ip::match('192.168.1.256', '192.168.1.2');
     }
+
+
+    /**
+     * @test
+     */
+    public function test7()
+    {
+        $status = Ip::match('192.168.5.5', '192.168.5.1-192.168.5.10');
+        $this->assertTrue($status);
+
+        $status = Ip::match('192.168.5.5', '192.168.1.1-192.168.10.10');
+        $this->assertTrue($status);
+
+        $status = Ip::match('192.168.5.5', '192.168.6.1-192.168.6.10');
+        $this->assertFalse($status);
+    }
+
+
+    /**
+     * @test
+     */
+    public function test8()
+    {
+        $status = Ip::match('2001:cdba:0000:0000:0000:0000:3257:9652', '2001:cdba:0000:0000:0000:0000:3257:*');
+        $this->assertTrue($status);
+
+        $status = Ip::match('2001:cdba:0000:0000:0000:0000:3257:9652', '2001:cdba:0000:0000:0000:0000:*:*');
+        $this->assertTrue($status);
+
+        $status = Ip::match('2001:cdba:0000:0000:0000:0000:3257:9652',
+                            '2001:cdba:0000:0000:0000:0000:3257:1234-2001:cdba:0000:0000:0000:0000:3257:9999');
+        $this->assertTrue($status);
+
+
+        $status = Ip::match('2001:cdba:0000:0000:0000:0000:3258:9652', '2001:cdba:0000:0000:0000:0000:3257:*');
+        $this->assertFalse($status);
+
+
+        $status = Ip::match('2001:cdba:0000:0000:0000:1234:3258:9652', '2001:cdba:0000:0000:0000:0000:*:*');
+        $this->assertFalse($status);
+
+
+        $status = Ip::match('2001:cdba:0000:0000:0000:0000:3257:7778',
+                            '2001:cdba:0000:0000:0000:0000:3257:1234-2001:cdba:0000:0000:0000:0000:3257:7777');
+        $this->assertFalse($status);
+    }
+
+
+    /**
+     * @test
+     */
+    public function test9()
+    {
+
+        $long = Ip::ip2long('192.168.1.1');
+        $this->assertEquals('3232235777', $long);
+
+        $dec = Ip::long2ip('3232235777');
+        $this->assertEquals('192.168.1.1', $dec);
+
+        $long = Ip::ip2long('fe80:0:0:0:202:b3ff:fe1e:8329');
+        $this->assertEquals('338288524927261089654163772891438416681', $long);
+
+        $dec = Ip::long2ip('338288524927261089654163772891438416681', true);
+        $this->assertEquals('fe80::202:b3ff:fe1e:8329', $dec);
+    }
+
 }
