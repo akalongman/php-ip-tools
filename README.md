@@ -4,7 +4,7 @@
 [![Latest Stable Version](https://img.shields.io/packagist/v/Longman/ip-tools.svg)](https://packagist.org/packages/longman/ip-tools)
 [![Total Downloads](https://img.shields.io/packagist/dt/Longman/ip-tools.svg)](https://packagist.org/packages/longman/ip-tools)
 [![Downloads Month](https://img.shields.io/packagist/dm/Longman/ip-tools.svg)](https://packagist.org/packages/longman/ip-tools)
-[![License](https://img.shields.io/packagist/l/Longman/ip-tools.svg)](https://packagist.org/packages/longman/ip-tools/LICENSE.md)
+[![License](https://img.shields.io/packagist/l/Longman/ip-tools.svg)](https://github.com/akalongman/ip-tools/LICENSE.md)
 
 
 Universal IP Tools for manipulation on IPv4 and IPv6.
