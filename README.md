@@ -1,16 +1,15 @@
 # PHP IP Tools
 
 [![Build Status](https://travis-ci.org/akalongman/php-ip-tools.svg?branch=master)](https://travis-ci.org/akalongman/php-ip-tools)
-[![Latest Stable
-Version](https://img.shields.io/packagist/v/Longman/ip-tools.svg)](https://packagist.org/packages/longman/ip-tools)
+[![Latest Stable Version](https://img.shields.io/packagist/v/Longman/ip-tools.svg)](https://packagist.org/packages/longman/ip-tools)
 [![Total Downloads](https://img.shields.io/packagist/dt/Longman/ip-tools.svg)](https://packagist.org/packages/longman/ip-tools)
 [![Downloads Month](https://img.shields.io/packagist/dm/Longman/ip-tools.svg)](https://packagist.org/packages/longman/ip-tools)
-[![License](https://img.shields.io/packagist/l/Longman/ip-tools.svg)](https://packagist.org/packages/longman/ip-tools)
+[![License](https://img.shields.io/packagist/l/Longman/ip-tools.svg)](https://packagist.org/packages/longman/ip-tools/LICENSE.md)
 
 
 Universal IP Tools for manipulation on IPv4 and IPv6.
 
-### Require this package with Composer
+## Require this package with Composer
 Install this package through [Composer](https://getcomposer.org/).
 Edit your project's `composer.json` file to require
 `longman/ip-tools`.
@@ -21,7 +20,7 @@ Create *composer.json* file:
     "name": "yourproject/yourproject",
     "type": "project",
     "require": {
-        "longman/ip-tools": "~1.0.1"
+        "longman/ip-tools": "~1.1.0"
     }
 }
 ```
@@ -33,7 +32,7 @@ And run composer update
 composer require longman/ip-tools
 ```
 
-### Usage
+## Usage
 ```php
 <?php
 $loader = require __DIR__.'/vendor/autoload.php';
@@ -118,10 +117,21 @@ This code is available on
 [Github](https://github.com/akalongman/php-ip-tools). Pull requests are welcome.
 
 ## Troubleshooting
+
 If you like living on the edge, please report any bugs you find on the
 [PHP IP Tools issues](https://github.com/akalongman/php-ip-tools/issues) page.
+
 ## Contributing
+
 See [CONTRIBUTING.md](CONTRIBUTING.md) for information.
+
+## License
+
+Please see the [LICENSE](LICENSE.md) included in this repository for a full copy of the MIT license,
+which this project is licensed under.
+
 ## Credits
 
-Credit list in [CREDITS](CREDITS)
+- [Avtandil Kikabidze aka LONGMAN](https://github.com/akalongman)
+
+Full credit list in [CREDITS](CREDITS)

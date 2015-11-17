@@ -19,7 +19,7 @@ namespace Longman\IPTools;
  * @license    http://opensource.org/licenses/mit-license.php The MIT License (MIT)
  * @link       http://www.github.com/akalongman/php-ip-tools
  */
-class Ip
+abstract class Ip
 {
     protected static $ip;
 
@@ -111,7 +111,7 @@ class Ip
     public static function compare($ip, $range)
     {
         if (!self::isValid($ip)) {
-            throw new \InvalidArgumentException('Input IP is invalid!');
+            throw new \InvalidArgumentException('Input IP "'.$ip.'" is invalid!');
         }
 
         $status = false;

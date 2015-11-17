@@ -1,8 +1,8 @@
 {
     "name": "longman/ip-tools",
     "type": "library",
-    "description": "PHP profiler library",
-    "keywords": ["profiler", "debugger"],
+    "description": "PHP IP Tools for manipulation with IPv4 and IPv6",
+    "keywords": ["ip", "ipv4", "ipv6", "tools", "utilities", "compare", "match", "subnet", "mask"],
     "license": "MIT",
     "homepage": "https://github.com/akalongman/php-ip-tools",
     "support": {
