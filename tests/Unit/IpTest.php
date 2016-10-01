@@ -190,4 +190,18 @@ class IpTest extends TestCase
         $this->assertEquals('fe80::202:b3ff:fe1e:8329', $dec);
     }
 
+    /**
+     * @test
+     */
+    
+    public function test_match_range(){
+        $range = Ip::matchRange('192.168.100.','192.168..');
+        $this->assertTrue($range);
+
+        $range = Ip::matchRange('192.168.1.200','192.168.1.');
+        $this->assertTrue($range);
+
+        $range = Ip::matchRange('192.168.1.200','192.168.2.');
+        $this->assertFalse($range);
+    }
 }

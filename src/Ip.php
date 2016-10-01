@@ -305,4 +305,21 @@ abstract class Ip
         }
         return $ipstr;
     }
+
+    public static function matchRange($ip, $range)
+    {
+        $ipItems = explode('.', $ip);
+        $rangeItems = explode('.', $range);
+
+        $ipItems = array_filter($ipItems, function ($subnet) {
+            return $subnet !== '';
+        });
+        $rangeItems = array_filter($rangeItems, function ($subnet) {
+            return $subnet !== '';
+        });
+
+        $ipItems = array_slice($ipItems, 0, count($rangeItems));
+
+        return implode('.', $rangeItems) === implode('.', $ipItems);
+    }
 }
