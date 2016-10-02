@@ -197,6 +197,9 @@ class IpTest extends TestCase
     {
         $status = Ip::isLocal('192.168.5.5');
         $this->assertTrue($status);
+
+        $status = Ip::isLocal('fe80::202:b3ff:fe1e:8329');
+        $this->assertTrue($status);
     }
 
     /**

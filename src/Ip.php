@@ -81,13 +81,27 @@ abstract class Ip
      */
     public static function isLocal($ip)
     {
+        $localIpv4Ranges = array(
+            '10.*.*.*',
+            '127.*.*.*',
+            '192.168.*.*',
+            '169.254.*.*',
+            '172.16.0.0-172.31.255.255',
+            '224.*.*.*',
+        );
+
+        $localIpv6Ranges = array(
+            'fe80::/10',
+            '::1/128',
+            'fc00::/7'
+        );
+
         if (self::isValidv4($ip)) {
-            return self::match($ip, '10.*.*.*') ||
-                   self::match($ip, '127.*.*.*') ||
-                   self::match($ip, '192.168.*.*') ||
-                   self::match($ip, '169.254.*.*') ||
-                   self::match($ip, '172.16.*.*') ||
-                   self::match($ip, '224.*.*.*');
+            return self::match($ip, $localIpv4Ranges);
+        }
+
+        if (self::isValidv6($ip)) {
+            return self::match($ip, $localIpv6Ranges);
         }
 
         return false;
