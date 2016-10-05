@@ -153,7 +153,7 @@ class IpTest extends TestCase
         $this->assertTrue($status);
 
         $status = Ip::match('2001:cdba:0000:0000:0000:0000:3257:9652',
-                            '2001:cdba:0000:0000:0000:0000:3257:1234-2001:cdba:0000:0000:0000:0000:3257:9999');
+            '2001:cdba:0000:0000:0000:0000:3257:1234-2001:cdba:0000:0000:0000:0000:3257:9999');
         $this->assertTrue($status);
 
 
@@ -166,7 +166,7 @@ class IpTest extends TestCase
 
 
         $status = Ip::match('2001:cdba:0000:0000:0000:0000:3257:7778',
-                            '2001:cdba:0000:0000:0000:0000:3257:1234-2001:cdba:0000:0000:0000:0000:3257:7777');
+            '2001:cdba:0000:0000:0000:0000:3257:1234-2001:cdba:0000:0000:0000:0000:3257:7777');
         $this->assertFalse($status);
     }
 
@@ -193,15 +193,36 @@ class IpTest extends TestCase
     /**
      * @test
      */
-    
-    public function test_match_range(){
-        $range = Ip::matchRange('192.168.100.','192.168..');
+
+
+    public function test_match_range()
+    {
+        $range = Ip::matchRange('192.168.100.', '192.168..');
         $this->assertTrue($range);
 
-        $range = Ip::matchRange('192.168.1.200','192.168.1.');
+        $range = Ip::matchRange('192.168.1.200', '192.168.1.');
         $this->assertTrue($range);
 
-        $range = Ip::matchRange('192.168.1.200','192.168.2.');
+        $range = Ip::matchRange('192.168.1.200', '192.168.2.');
         $this->assertFalse($range);
     }
+
+    public function testLocal()
+    {
+        $status = Ip::isLocal('192.168.5.5');
+        $this->assertTrue($status);
+
+        $status = Ip::isLocal('fe80::202:b3ff:fe1e:8329');
+        $this->assertTrue($status);
+    }
+
+    /**
+     * @test
+     */
+    public function testRemote()
+    {
+        $status = Ip::isRemote('8.8.8.8');
+        $this->assertTrue($status);
+    }
+
 }
