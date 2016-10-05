@@ -190,4 +190,25 @@ class IpTest extends TestCase
         $this->assertEquals('fe80::202:b3ff:fe1e:8329', $dec);
     }
 
+    /**
+     * @test
+     */
+    public function testLocal()
+    {
+        $status = Ip::isLocal('192.168.5.5');
+        $this->assertTrue($status);
+
+        $status = Ip::isLocal('fe80::202:b3ff:fe1e:8329');
+        $this->assertTrue($status);
+    }
+
+    /**
+     * @test
+     */
+    public function testRemote()
+    {
+        $status = Ip::isRemote('8.8.8.8');
+        $this->assertTrue($status);
+    }
+
 }

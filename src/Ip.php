@@ -74,6 +74,51 @@ abstract class Ip
     }
 
     /**
+     * Checks if an IP is local
+     *
+     * @param  string  $ip IP
+     * @return boolean     true if the IP is local, otherwise false
+     */
+    public static function isLocal($ip)
+    {
+        $localIpv4Ranges = array(
+            '10.*.*.*',
+            '127.*.*.*',
+            '192.168.*.*',
+            '169.254.*.*',
+            '172.16.0.0-172.31.255.255',
+            '224.*.*.*',
+        );
+
+        $localIpv6Ranges = array(
+            'fe80::/10',
+            '::1/128',
+            'fc00::/7'
+        );
+
+        if (self::isValidv4($ip)) {
+            return self::match($ip, $localIpv4Ranges);
+        }
+
+        if (self::isValidv6($ip)) {
+            return self::match($ip, $localIpv6Ranges);
+        }
+
+        return false;
+    }
+
+    /**
+     * Checks if an IP is remot
+     *
+     * @param  string  $ip IP
+     * @return boolean     true if the IP is remote, otherwise false
+     */
+    public static function isRemote($ip)
+    {
+        return !self::isLocal($ip);
+    }
+
+    /**
      * Checks if an IP is part of an IP range.
      *
      * @param string $ip IPv4/IPv6
