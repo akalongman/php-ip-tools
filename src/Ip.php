@@ -251,12 +251,11 @@ abstract class Ip
     protected static function processWithAsterisk($range)
     {
         if (strpos($range, '*') !== false) {
-
             $lowerRange = self::$isv6 ? '0000' : '0';
             $upperRange = self::$isv6 ? 'ffff' : '255';
 
-            $lower = str_replace('*',$lowerRange, $range);
-            $upper = str_replace('*',$upperRange, $range);
+            $lower = str_replace('*', $lowerRange, $range);
+            $upper = str_replace('*', $upperRange, $range);
 
             $range = $lower . '-' . $upper;
         }
