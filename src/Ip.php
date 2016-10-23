@@ -251,18 +251,19 @@ abstract class Ip
     protected static function processWithAsterisk($range)
     {
         if (strpos($range, '*') !== false) {
-            if (self::$isv6) {
-                $lower = str_replace('*', '0000', $range);
-                $upper = str_replace('*', 'ffff', $range);
-            } else {
-                $lower = str_replace('*', '0', $range);
-                $upper = str_replace('*', '255', $range);
-            }
+            $lowerRange = self::$isv6 ? '0000' : '0';
+            $upperRange = self::$isv6 ? 'ffff' : '255';
+
+            $lower = str_replace('*', $lowerRange, $range);
+            $upper = str_replace('*', $upperRange, $range);
+
             $range = $lower . '-' . $upper;
         }
+
         if (strpos($range, '-') !== false) {
             return self::processWithMinus($range);
         }
+
         return false;
     }
 
@@ -353,18 +354,14 @@ abstract class Ip
 
     public static function matchRange($ip, $range)
     {
-        $ipItems = explode('.', $ip);
-        $rangeItems = explode('.', $range);
+        $ipParts = explode('.', $ip);
+        $rangeParts = explode('.', $range);
 
-        $ipItems = array_filter($ipItems, function ($subnet) {
-            return $subnet !== '';
-        });
-        $rangeItems = array_filter($rangeItems, function ($subnet) {
-            return $subnet !== '';
-        });
+        $ipParts = array_filter($ipParts);
+        $rangeParts = array_filter($rangeParts);
 
-        $ipItems = array_slice($ipItems, 0, count($rangeItems));
+        $ipParts = array_slice($ipParts, 0, count($rangeParts));
 
-        return implode('.', $rangeItems) === implode('.', $ipItems);
+        return implode('.', $rangeParts) === implode('.', $ipParts);
     }
 }
