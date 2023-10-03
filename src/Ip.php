@@ -324,10 +324,10 @@ abstract class Ip
      * @param long $dec IPv4 or IPv6 long
      * @return string If IP is valid returns IP string representation, otherwise ''.
      */
-    public static function long2ip($dec, $ipv6 = false)
+    public static function long2ip($dec)
     {
         $ipstr = '';
-        if ($ipv6) {
+        if ($dec > 4294967295) { // IPv6
             if (!function_exists('bcadd')) {
                 throw new \RuntimeException('BCMATH extension not installed!');
             }
